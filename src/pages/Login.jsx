@@ -25,6 +25,11 @@ export default class Login extends Component {
     history.push('/playpage');
   };
 
+  goToSettings = () => {
+    const { history } = this.props;
+    history.push('/settings');
+  };
+
   render() {
     const { name, email, isDisabled } = this.state;
     return (
@@ -54,6 +59,13 @@ export default class Login extends Component {
           onClick={ this.handleClick }
         >
           Play
+        </button>
+        <button
+          type="button"
+          data-testid="btn-settings"
+          onClick={ this.goToSettings }
+        >
+          Settings ⚙️
         </button>
       </div>
     );
