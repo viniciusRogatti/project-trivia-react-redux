@@ -1,5 +1,5 @@
 const INITIAL_STATE = {
-  email: 'teste@gmail.com',
+  settings: '',
 };
 
 const Reducer2 = (state = INITIAL_STATE, action) => {

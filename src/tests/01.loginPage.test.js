@@ -4,7 +4,6 @@ import App from '../App';
 import { BTN_PLAY_TEST_ID, BTN_SETTINGS_TEST_ID, INPUT_EMAIL_TEST_ID, INPUT_NAME_TEST_ID } from './helpers';
 import renderWithRouterAndRedux from './helpers/renderWithRouterAndRedux'
 
-
 describe('Testando a pagina de Login', () => {
   test('Verifica se os inputs e os buttons são renderizados na tela', () => {
     renderWithRouterAndRedux(<App/>)
