@@ -11,6 +11,7 @@ describe('Testando a pagina de Login', () => {
     const inputEmail = screen.getByTestId(INPUT_EMAIL_TEST_ID);
     const BtnPlay = screen.getByTestId(BTN_PLAY_TEST_ID);
     const BtnSettings = screen.getByTestId(BTN_SETTINGS_TEST_ID);
+
     expect(inputName).toBeInTheDocument();
     expect(inputEmail).toBeInTheDocument();
     expect(BtnPlay).toBeInTheDocument();

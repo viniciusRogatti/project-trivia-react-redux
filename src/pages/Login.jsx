@@ -1,9 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { FiSettings } from 'react-icons/fi';
 import PropTypes from 'prop-types';
 import fetchApi from '../services/fetchApi';
 import { saveToken } from '../services/storage';
 import { playerAction } from '../redux/actions/index';
+import LogoStyle from '../styles/LogoStyle';
+import MainStyle from '../styles/MainStyle';
+import { BoxLoginStyle, BgStyle } from '../styles/loginStyles/LoginSyles';
+import ButtonStyle from '../styles/Button';
+import ButtonSettings from '../styles/ButtonSetting';
+import IconTrybe from '../styles/IconTrybe';
 
 class Login extends Component {
   state = {
@@ -36,9 +43,19 @@ class Login extends Component {
   render() {
     const { name, email, isDisabled } = this.state;
     return (
-      <div>
-        <label htmlFor="input-player-name">
-          User Name:
+      <MainStyle>
+        <LogoStyle />
+        <BgStyle />
+        <BoxLoginStyle>
+          <input
+            value={ email }
+            name="email"
+            type="email"
+            onChange={ this.onInputChange }
+            id="input-gravatar-email"
+            data-testid="input-gravatar-email"
+            placeholder="Qual é o seu e-mail do gravatar?"
+          />
           <input
             value={ name }
             name="name"
@@ -46,35 +63,27 @@ class Login extends Component {
             onChange={ this.onInputChange }
             id="input-player-name"
             data-testid="input-player-name"
+            placeholder="Qual é o seu nome?"
           />
-        </label>
-        <label htmlFor="input-gravatar-email">
-          Email:
-          <input
-            value={ email }
-            name="email"
-            type="email"
-            onChange={ this.onInputChange }
-            // id="input-gravatar-email"
-            data-testid="input-gravatar-email"
-          />
-        </label>
-        <button
-          type="button"
-          disabled={ isDisabled }
-          data-testid="btn-play"
-          onClick={ this.handleClick }
-        >
-          Play
-        </button>
-        <button
-          type="button"
-          data-testid="btn-settings"
-          onClick={ this.goToSettings }
-        >
-          Settings ⚙️
-        </button>
-      </div>
+          <ButtonStyle
+            type="button"
+            disabled={ isDisabled }
+            data-testid="btn-play"
+            onClick={ this.handleClick }
+          >
+            Play
+          </ButtonStyle>
+          <ButtonSettings
+            type="button"
+            data-testid="btn-settings"
+            onClick={ this.goToSettings }
+          >
+            <FiSettings />
+          </ButtonSettings>
+
+        </BoxLoginStyle>
+        <IconTrybe />
+      </MainStyle>
     );
   }
 }
