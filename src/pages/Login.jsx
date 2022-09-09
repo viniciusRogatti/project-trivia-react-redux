@@ -8,7 +8,7 @@ import { playerAction } from '../redux/actions/index';
 import LogoStyle from '../styles/LogoStyle';
 import MainStyle from '../styles/MainStyle';
 import { BoxLoginStyle, BgStyle } from '../styles/loginStyles/LoginSyles';
-import ButtonStyle from '../styles/Button';
+import ButtonStyle from '../styles/ButtonStyle';
 import ButtonSettings from '../styles/ButtonSetting';
 import IconTrybe from '../styles/IconTrybe';
 
