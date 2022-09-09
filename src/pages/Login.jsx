@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import fetchApi from '../services/fetchApi';
 import { saveToken } from '../services/storage';
+import { playerAction } from '../redux/actions/index';
 
-export default class Login extends Component {
+class Login extends Component {
   state = {
     name: '',
     email: '',
@@ -19,9 +21,10 @@ export default class Login extends Component {
   };
 
   handleClick = async () => {
+    const { history, dispatch } = this.props;
     const token = await fetchApi();
     saveToken(token);
-    const { history } = this.props;
+    dispatch(playerAction(this.state));
     history.push('/playpage');
   };
 
@@ -35,20 +38,24 @@ export default class Login extends Component {
     return (
       <div>
         <label htmlFor="input-player-name">
+          User Name:
           <input
             value={ name }
             name="name"
             type="text"
             onChange={ this.onInputChange }
+            id="input-player-name"
             data-testid="input-player-name"
           />
         </label>
         <label htmlFor="input-gravatar-email">
+          Email:
           <input
             value={ email }
             name="email"
             type="email"
             onChange={ this.onInputChange }
+            // id="input-gravatar-email"
             data-testid="input-gravatar-email"
           />
         </label>
@@ -76,4 +83,7 @@ Login.propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
   }).isRequired,
+  dispatch: PropTypes.func.isRequired,
 };
+
+export default connect()(Login);
