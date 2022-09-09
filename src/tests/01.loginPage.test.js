@@ -1,7 +1,6 @@
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import App from '../App';
-import Login from '../pages/Login';
 import { BTN_PLAY_TEST_ID, BTN_SETTINGS_TEST_ID, INPUT_EMAIL_TEST_ID, INPUT_NAME_TEST_ID } from './helpers';
 import renderWithRouterAndRedux from './helpers/renderWithRouterAndRedux'
 
@@ -18,6 +17,7 @@ describe('Testando a pagina de Login', () => {
     expect(BtnPlay).toBeInTheDocument();
     expect(BtnSettings).toBeInTheDocument();
   });
+
   test('Verifica se o botão "Play" inicia desabilitado e se é habilitado ao digitar um nome e um email', () => {
     renderWithRouterAndRedux(<App/>)
     const inputName = screen.getByTestId(INPUT_NAME_TEST_ID);
@@ -31,6 +31,7 @@ describe('Testando a pagina de Login', () => {
     expect(BtnPlay).not.toBeDisabled();
 
   });
+
   test('Verifica se ao clicar no botão "Play" o pathname muda para "/playpage"', async () => {
     const { history } = renderWithRouterAndRedux(<App/>)
     const inputName = screen.getByTestId(INPUT_NAME_TEST_ID);
@@ -44,6 +45,7 @@ describe('Testando a pagina de Login', () => {
     expect(history.location.pathname).toBe("/playpage")
 
   });
+
   test('Verifica se ao clicar no botão "Settings" o pathname muda para "/settings"', async () => {
     const { history } = renderWithRouterAndRedux(<App/>)
     userEvent.click(screen.getByTestId(BTN_SETTINGS_TEST_ID));
