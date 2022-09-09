@@ -30,6 +30,7 @@ export const BgStyle = styled.div`
   position: absolute;
   background-image: url(${bgTrivia});
   background-repeat: no-repeat;
+  background-size: cover;
   width: 100%;
   height: 100%;
   mix-blend-mode: multiply;
