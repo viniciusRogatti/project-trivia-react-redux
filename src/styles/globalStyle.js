@@ -12,7 +12,6 @@ const GlobalStyles = createGlobalStyle`
 */
 * {
   margin: 0;
-  color: #fff;
 }
 /*
   3. Allow percentage-based heights in the application
@@ -29,6 +28,7 @@ body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   background-color: #010101;
+  color: #fff;
 }
 /*
   6. Improve media defaults
