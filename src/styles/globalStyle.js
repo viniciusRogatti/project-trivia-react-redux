@@ -12,6 +12,7 @@ const GlobalStyles = createGlobalStyle`
 */
 * {
   margin: 0;
+  color: #fff;
 }
 /*
   3. Allow percentage-based heights in the application
