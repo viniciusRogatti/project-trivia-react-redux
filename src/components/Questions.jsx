@@ -9,6 +9,7 @@ export default class Questions extends Component {
     answerCorrect: '',
     category: '',
     questionText: '',
+    border: false,
   };
 
   componentDidMount() {
@@ -34,16 +35,12 @@ export default class Questions extends Component {
     return arr;
   };
 
-  handleClick = ({ target: { innerText } }) => {
-    const { answerCorrect } = this.state;
-    console.log(answerCorrect, innerText);
-    if (innerText === answerCorrect) {
-      console.log('entrou');
-    }
+  handleClick = () => {
+    this.setState({ border: true });
   };
 
   render() {
-    const { answerArray, category, questionText, answerCorrect } = this.state;
+    const { answerArray, category, questionText, answerCorrect, border } = this.state;
 
     return (
       <div>
@@ -56,6 +53,7 @@ export default class Questions extends Component {
               key={ `wrong-answer-${index}` }
               data-testid="correct-answer"
               onClick={ this.handleClick }
+              className={ border && 'correctAnswer' }
             >
               { answer }
             </ButtonAnswer>
@@ -65,6 +63,7 @@ export default class Questions extends Component {
               key={ `wrong-answer-${index}` }
               data-testid={ `wrong-answer-${index}` }
               onClick={ this.handleClick }
+              className={ border && 'wrongAnswer' }
             >
               { answer }
             </ButtonAnswer>
