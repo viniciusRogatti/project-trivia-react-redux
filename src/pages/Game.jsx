@@ -11,6 +11,7 @@ import FooterGame from '../styles/gameStyles/FooterGame';
 class Game extends Component {
   state = {
     questions: [],
+    indexQuestion: 0,
   };
 
   async componentDidMount() {
@@ -26,13 +27,27 @@ class Game extends Component {
     }
   }
 
-  render() {
-    const { questions } = this.state;
+  handleNext = () => {
+    const { indexQuestion, questions } = this.state;
+    console.log(indexQuestion < questions.length);
+    if (indexQuestion < questions.length - 1) {
+      this.setState((prevState) => ({
+        indexQuestion: prevState.indexQuestion + 1,
+      }));
+    }
+  };
 
+  render() {
+    const { questions, indexQuestion } = this.state;
+    console.log(questions[indexQuestion]);
     return (
       <MainGame>
         <Header />
-        { questions.length > 0 && <Questions question={ questions[0] } /> }
+        { questions.length > 0 && (
+          <Questions
+            handleNext={ this.handleNext }
+            question={ questions[indexQuestion] }
+          />) }
         <FooterGame />
       </MainGame>
     );

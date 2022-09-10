@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { IoIosTimer } from 'react-icons/io';
+import { connect } from 'react-redux';
 import ButtonAnswer from '../styles/gameStyles/ButtonAnswer';
 import ContainerAnswer from '../styles/gameStyles/ContainerAnswer';
 import SectionGame from '../styles/gameStyles/SectionGame';
@@ -10,8 +12,10 @@ import BoxCategory from '../styles/gameStyles/BoxCategory';
 import BoxTextQuestion from '../styles/gameStyles/BoxTextQuestion';
 import IconTrybe from '../styles/IconTrybe';
 import ButtonStyle from '../styles/ButtonStyle';
+import TimerComtent from '../styles/TimerStyle';
+import { scoreAction } from '../redux/actions';
 
-export default class Questions extends Component {
+class Questions extends Component {
   state = {
     answerArray: [],
     answerCorrect: '',
@@ -24,6 +28,12 @@ export default class Questions extends Component {
   componentDidMount() {
     this.getListQuestions();
     this.timeToAnswer();
+  }
+
+  componentDidUpdate(prevprops) {
+    if (prevprops !== this.props) {
+      this.getListQuestions();
+    }
   }
 
   componentWillUnmount() {
@@ -63,8 +73,29 @@ export default class Questions extends Component {
     return arr;
   };
 
-  handleClick = () => {
+  sumScore = (answer) => {
+    const { question: { correct_answer: correctAnswer, difficulty }, score } = this.props;
+    const { timer } = this.state;
+    if (answer === correctAnswer) {
+      const dez = 10;
+      const hard = 3;
+      switch (difficulty) {
+      case 'easy':
+        return dez + (timer * 1);
+      case 'medium':
+        return dez + (timer * 2);
+      case 'hard':
+        return dez + (timer * hard);
+      default:
+        break;
+      }
+    } else return score;
+  };
+
+  handleClick = ({ target: { innerText } }) => {
     this.setState({ nextQuestion: true });
+    const { dispatch } = this.props;
+    dispatch(scoreAction(this.sumScore(innerText)));
   };
 
   render() {
@@ -75,6 +106,8 @@ export default class Questions extends Component {
       answerCorrect,
       nextQuestion, timer } = this.state;
 
+    const { handleNext } = this.props;
+
     return (
       <SectionGame>
         <ContainerQuestion>
@@ -82,7 +115,15 @@ export default class Questions extends Component {
           <BoxQuestion>
             <BoxCategory data-testid="question-category">{category}</BoxCategory>
             <BoxTextQuestion data-testid="question-text">{questionText}</BoxTextQuestion>
-            <span>{timer}</span>
+            <TimerComtent>
+              <IoIosTimer />
+              <p>
+                Tempo:
+                {' '}
+                {timer}
+                s
+              </p>
+            </TimerComtent>
           </BoxQuestion>
           <IconTrybe />
         </ContainerQuestion>
@@ -111,7 +152,10 @@ export default class Questions extends Component {
             </ButtonAnswer>
           )))}
           { nextQuestion && (
-            <ButtonStyle>
+            <ButtonStyle
+              data-testid="btn-next"
+              onClick={ () => handleNext() }
+            >
               Next
             </ButtonStyle>
           )}
@@ -123,4 +167,13 @@ export default class Questions extends Component {
 
 Questions.propTypes = {
   question: PropTypes.shape(PropTypes.object.isRequired).isRequired,
+  dispatch: PropTypes.func.isRequired,
+  score: PropTypes.number.isRequired,
+  handleNext: PropTypes.func.isRequired,
 };
+
+const mapStateToProps = (state) => ({
+  score: state.player.score,
+});
+
+export default connect(mapStateToProps)(Questions);
