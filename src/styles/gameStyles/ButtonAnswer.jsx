@@ -11,12 +11,16 @@ const ButtonAnswer = styled.button`
   font-style: normal;
   margin: 9px;
 
-  :focus&.wrongAnswer {
-    background-color: red;
+
+
+  :disabled&.correctAnswer {
+    background-color: rgb(6, 240, 15);
+    opacity: 0.5;
   }
 
-  :focus&.correctAnswer {
-    background-color: rgb(6, 240, 15);
+  :disabled&.wrongAnswer {
+    background-color: red;
+    opacity: 0.5;
   }
 `;
 
