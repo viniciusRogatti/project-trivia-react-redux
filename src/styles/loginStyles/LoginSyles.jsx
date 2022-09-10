@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import bgTrivia from '../imgs/background.png';
+import bgTrivia from '../_imgs/background.png';
 
 export const BoxLoginStyle = styled.div`
   position: absolute;

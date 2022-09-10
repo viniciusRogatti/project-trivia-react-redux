@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import md5 from 'crypto-js/md5';
 import PropTypes from 'prop-types';
+import { FiSettings } from 'react-icons/fi';
+import { FaStar } from 'react-icons/fa';
 import { connect } from 'react-redux';
 import { gravatarAction } from '../redux/actions';
+import HeaderStyle from '../styles/headerStyles/HeaderStyle';
 
 class Header extends Component {
   state = {
@@ -20,15 +23,20 @@ class Header extends Component {
     const { name, score } = this.props;
     const { hashEmail } = this.state;
     return (
-      <header>
+      <HeaderStyle>
         <img
           src={ `https://www.gravatar.com/avatar/${hashEmail}` }
           alt="gravatar img"
           data-testid="header-profile-picture"
         />
-        <span data-testid="header-player-name">{`User Name: ${name}`}</span>
-        <span data-testid="header-score">{`Score: ${score}`}</span>
-      </header>
+        <span data-testid="header-player-name">{name}</span>
+        <FaStar className="star-icon" />
+        <span data-testid="header-score">
+          Pontos:
+          <strong>{score}</strong>
+        </span>
+        <FiSettings />
+      </HeaderStyle>
     );
   }
 }

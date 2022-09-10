@@ -9,7 +9,7 @@ import LogoStyle from '../styles/LogoStyle';
 import MainStyle from '../styles/MainStyle';
 import { BoxLoginStyle, BgStyle } from '../styles/loginStyles/LoginSyles';
 import ButtonStyle from '../styles/ButtonStyle';
-import ButtonSettings from '../styles/ButtonSetting';
+import ButtonSettings from '../styles/loginStyles/ButtonSetting';
 import IconTrybe from '../styles/IconTrybe';
 
 class Login extends Component {

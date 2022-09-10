@@ -1,19 +1,27 @@
 import styled from 'styled-components';
 
 const ButtonAnswer = styled.button`
-  width: 519px;
+  width: 515px;
   height: 64px;
   left: 661px;
   top: 361px;
   background: #FFFFFF;
-  border: 1px solid #FFFFFF;
   border-radius: 100px;
   font-family: 'Epilogue';
   font-style: normal;
-  font-weight: 400;
-  line-height: 150%;
-  margin-bottom: 18px;
-  letter-spacing: 0.12em;
+  margin: 9px;
+
+
+
+  :disabled&.correctAnswer {
+    background-color: rgb(6, 240, 15);
+    opacity: 0.5;
+  }
+
+  :disabled&.wrongAnswer {
+    background-color: red;
+    opacity: 0.5;
+  }
 `;
 
 export default ButtonAnswer;
