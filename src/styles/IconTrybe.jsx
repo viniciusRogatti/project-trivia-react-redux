@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import iconTrybe from './imgs/icone-trybe.png';
+import iconTrybe from './_imgs/icone-trybe.png';
 
 const IconTrybe = styled.div`
   position: absolute;

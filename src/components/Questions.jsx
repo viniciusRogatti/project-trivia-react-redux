@@ -2,6 +2,13 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ButtonAnswer from '../styles/gameStyles/ButtonAnswer';
 import ContainerAnswer from '../styles/gameStyles/ContainerAnswer';
+import SectionGame from '../styles/gameStyles/SectionGame';
+import ContainerQuestion from '../styles/gameStyles/ContainerQuestion';
+import LogoStyle from '../styles/LogoStyle';
+import BoxQuestion from '../styles/gameStyles/BoxQuestion';
+import BoxCategory from '../styles/gameStyles/BoxCategory';
+import BoxTextQuestion from '../styles/gameStyles/BoxTextQuestion';
+import IconTrybe from '../styles/IconTrybe';
 
 export default class Questions extends Component {
   state = {
@@ -19,7 +26,6 @@ export default class Questions extends Component {
         incorrect_answers: incorrectAnswers, category, question } } = this.props;
     const listQuestions = [...incorrectAnswers, correctAnswer];
     const answerArray = this.shuffleArray(listQuestions);
-    console.log(answerArray);
     this.setState({
       answerArray,
       answerCorrect: correctAnswer,
@@ -43,9 +49,16 @@ export default class Questions extends Component {
     const { answerArray, category, questionText, answerCorrect, border } = this.state;
 
     return (
-      <div>
-        <span data-testid="question-category">{category}</span>
-        <span data-testid="question-text">{questionText}</span>
+      <SectionGame>
+        <ContainerQuestion>
+          <LogoStyle className="logoTrivia" />
+          <BoxQuestion>
+            <BoxCategory data-testid="question-category">{category}</BoxCategory>
+            <BoxTextQuestion data-testid="question-text">{questionText}</BoxTextQuestion>
+            <span>TIME</span>
+          </BoxQuestion>
+          <IconTrybe />
+        </ContainerQuestion>
         <ContainerAnswer data-testid="answer-options">
           { answerArray?.map((answer, index) => (answer === answerCorrect ? (
             <ButtonAnswer
@@ -69,8 +82,7 @@ export default class Questions extends Component {
             </ButtonAnswer>
           )))}
         </ContainerAnswer>
-
-      </div>
+      </SectionGame>
     );
   }
 }

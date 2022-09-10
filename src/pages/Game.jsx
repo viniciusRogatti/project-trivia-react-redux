@@ -5,6 +5,8 @@ import Header from '../components/Header';
 import fetchTrivia from '../services/fetchTrivia';
 import { getToken } from '../services/storage';
 import Questions from '../components/Questions';
+import MainGame from '../styles/gameStyles/MainGame';
+import FooterGame from '../styles/gameStyles/FooterGame';
 
 class Game extends Component {
   state = {
@@ -28,10 +30,11 @@ class Game extends Component {
     const { questions } = this.state;
 
     return (
-      <h2>
+      <MainGame>
         <Header />
         { questions.length > 0 && <Questions question={ questions[0] } /> }
-      </h2>
+        <FooterGame />
+      </MainGame>
     );
   }
 }

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import logoTrivia from './imgs/logo-trivia.png';
+import logoTrivia from './_imgs/logo-trivia.png';
 
 const LogoStyle = styled.div` 
   position: absolute;
