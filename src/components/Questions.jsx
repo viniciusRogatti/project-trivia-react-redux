@@ -37,11 +37,13 @@ class Questions extends Component {
 
   timeToAnswer = () => {
     const oneSecond = 1000;
+    const { dispatch, score } = this.props;
     const intervalTime = setInterval(() => {
       const { timer } = this.state;
       const timeLimit = 0;
       if (timer === timeLimit) {
         this.setState({ nextQuestion: true });
+        dispatch(scoreAction(score));
       } else {
         this.setState((prevState) => ({ timer: prevState.timer - 1 }));
       }
@@ -89,22 +91,21 @@ class Questions extends Component {
   };
 
   handleClick = ({ target: { innerText } }) => {
-    const { score } = this.state;
+    const { dispatch } = this.props;
     this.setState({ nextQuestion: true, score: this.sumScore(innerText) }, () => {
-      console.log(score);
+      const { score } = this.state;
+      dispatch(scoreAction(score));
     });
     const { intervalTime } = this.state;
     clearInterval(intervalTime);
   };
 
   nextBtnClick = () => {
-    const { handleNext, dispatch } = this.props;
-    const { score } = this.state;
+    const { handleNext } = this.props;
     handleNext();
     this.setState({ nextQuestion: false, timer: 30 });
     this.getListQuestions();
     this.timeToAnswer();
-    dispatch(scoreAction(score));
   };
 
   render() {
