@@ -10,6 +10,7 @@ const ButtonAnswer = styled.button`
   font-family: 'Epilogue';
   font-style: normal;
   margin: 9px;
+  cursor: pointer;
 
 
 

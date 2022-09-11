@@ -29,17 +29,16 @@ class Game extends Component {
 
   handleNext = () => {
     const { indexQuestion, questions } = this.state;
-    console.log(indexQuestion < questions.length);
+    const { history } = this.props;
     if (indexQuestion < questions.length - 1) {
       this.setState((prevState) => ({
         indexQuestion: prevState.indexQuestion + 1,
       }));
-    }
+    } else history.push('/feedback');
   };
 
   render() {
     const { questions, indexQuestion } = this.state;
-    console.log(questions[indexQuestion]);
     return (
       <MainGame>
         <Header />

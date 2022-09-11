@@ -22,6 +22,7 @@ const ReducerPlayer = (state = INITIAL_STATE, action) => {
       gravatarEmail: action.value,
     };
   case SCORE_USER:
+    console.log(action.value);
     return {
       ...state,
       score: action.value,
