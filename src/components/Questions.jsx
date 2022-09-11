@@ -22,7 +22,6 @@ class Questions extends Component {
     category: '',
     questionText: '',
     timer: 30,
-    nextQuestion: false,
   };
 
   componentDidMount() {
@@ -30,28 +29,27 @@ class Questions extends Component {
     this.timeToAnswer();
   }
 
-  componentDidUpdate(prevprops) {
-    if (prevprops !== this.props) {
+  componentDidUpdate(prevProps) {
+    if (prevProps !== this.props) {
       this.getListQuestions();
     }
   }
 
-  componentWillUnmount() {
-    clearInterval(this.timeToAnswer());
-  }
-
   timeToAnswer = () => {
     const oneSecond = 1000;
-    return setInterval(() => {
+    const { dispatch, score } = this.props;
+    const intervalTime = setInterval(() => {
       const { timer } = this.state;
       const timeLimit = 0;
       if (timer === timeLimit) {
-        console.log('tempo esgotado');
         this.setState({ nextQuestion: true });
+        dispatch(scoreAction(score));
       } else {
         this.setState((prevState) => ({ timer: prevState.timer - 1 }));
       }
     }, oneSecond);
+
+    this.setState({ intervalTime });
   };
 
   getListQuestions = () => {
@@ -81,11 +79,11 @@ class Questions extends Component {
       const hard = 3;
       switch (difficulty) {
       case 'easy':
-        return dez + (timer * 1);
+        return score + dez + (timer * 1);
       case 'medium':
-        return dez + (timer * 2);
+        return score + dez + (timer * 2);
       case 'hard':
-        return dez + (timer * hard);
+        return score + dez + (timer * hard);
       default:
         break;
       }
@@ -93,9 +91,21 @@ class Questions extends Component {
   };
 
   handleClick = ({ target: { innerText } }) => {
-    this.setState({ nextQuestion: true });
     const { dispatch } = this.props;
-    dispatch(scoreAction(this.sumScore(innerText)));
+    this.setState({ nextQuestion: true, score: this.sumScore(innerText) }, () => {
+      const { score } = this.state;
+      dispatch(scoreAction(score));
+    });
+    const { intervalTime } = this.state;
+    clearInterval(intervalTime);
+  };
+
+  nextBtnClick = () => {
+    const { handleNext } = this.props;
+    handleNext();
+    this.setState({ nextQuestion: false, timer: 30 });
+    this.getListQuestions();
+    this.timeToAnswer();
   };
 
   render() {
@@ -105,8 +115,7 @@ class Questions extends Component {
       questionText,
       answerCorrect,
       nextQuestion, timer } = this.state;
-
-    const { handleNext } = this.props;
+    console.log(answerCorrect);
 
     return (
       <SectionGame>
@@ -131,7 +140,7 @@ class Questions extends Component {
           { answerArray?.map((answer, index) => (answer === answerCorrect ? (
             <ButtonAnswer
               type="button"
-              key={ `wrong-answer-${index}` }
+              key={ `correct-answer-${index}` }
               data-testid="correct-answer"
               onClick={ this.handleClick }
               className={ nextQuestion && 'correctAnswer' }
@@ -154,7 +163,7 @@ class Questions extends Component {
           { nextQuestion && (
             <ButtonStyle
               data-testid="btn-next"
-              onClick={ () => handleNext() }
+              onClick={ this.nextBtnClick }
             >
               Next
             </ButtonStyle>
