@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Header from '../components/Header';
-import './arquivotemporario.css';
 import { clearScore } from '../redux/actions';
+import MainStyle from '../styles/MainStyle';
 
 class Feedback extends Component {
   handleClick = ({ target: { name } }) => {
@@ -17,17 +17,17 @@ class Feedback extends Component {
     const { assertions, score } = this.props;
     const THREE = 3;
     return (
-      <div data-testid="feedback-text">
+      <MainStyle data-testid="feedback-text">
         <Header />
         <div>
-          <p>
+          <span>
             Você Acertou:
             <strong data-testid="feedback-total-question">{ assertions }</strong>
             perguntas
-          </p>
-          <p data-testid="feedback-text">
+          </span>
+          <span data-testid="feedback-text">
             { assertions >= THREE ? 'Well Done!' : 'Could be better...' }
-          </p>
+          </span>
           <p data-testid="feedback-total-score">{ score }</p>
         </div>
         <button
@@ -46,7 +46,7 @@ class Feedback extends Component {
         >
           Ranking
         </button>
-      </div>
+      </MainStyle>
     );
   }
 }
