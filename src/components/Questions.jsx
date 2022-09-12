@@ -117,7 +117,6 @@ class Questions extends Component {
       questionText,
       answerCorrect,
       nextQuestion, timer } = this.state;
-    console.log(answerCorrect);
 
     return (
       <SectionGame>
