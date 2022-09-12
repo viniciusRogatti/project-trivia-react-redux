@@ -31,9 +31,9 @@ class Header extends Component {
         />
         <span data-testid="header-player-name">{name}</span>
         <FaStar className="star-icon" />
-        <span data-testid="header-score">
+        <span>
           Pontos:
-          <strong>{score}</strong>
+          <strong data-testid="header-score">{score}</strong>
         </span>
         <FiSettings />
       </HeaderStyle>
