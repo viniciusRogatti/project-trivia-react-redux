@@ -13,7 +13,7 @@ import BoxTextQuestion from '../styles/gameStyles/BoxTextQuestion';
 import IconTrybe from '../styles/IconTrybe';
 import ButtonStyle from '../styles/ButtonStyle';
 import TimerComtent from '../styles/TimerStyle';
-import { scoreAction } from '../redux/actions';
+import { rightAnswer, scoreAction } from '../redux/actions';
 
 class Questions extends Component {
   state = {
@@ -92,6 +92,8 @@ class Questions extends Component {
 
   handleClick = ({ target: { innerText } }) => {
     const { dispatch } = this.props;
+    const { answerCorrect } = this.state;
+    if (innerText === answerCorrect) dispatch(rightAnswer());
     this.setState({ nextQuestion: true, score: this.sumScore(innerText) }, () => {
       const { score } = this.state;
       dispatch(scoreAction(score));
