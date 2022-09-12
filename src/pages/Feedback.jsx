@@ -3,7 +3,13 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Header from '../components/Header';
 import { clearScore } from '../redux/actions';
-import MainStyle from '../styles/MainStyle';
+import MainFeedback from '../styles/feedbackStyles/MainFeedback';
+import FooterFeedback from '../styles/feedbackStyles/FooterFeedback';
+import LogoStyle from '../styles/LogoStyle';
+import AvatarStyle from '../styles/feedbackStyles/Avatar';
+import ContainerBox from '../styles/feedbackStyles/ContainerBox';
+import ButtonStyle from '../styles/ButtonStyle';
+import ContainerButton from '../styles/feedbackStyles/ContainerButton';
 
 class Feedback extends Component {
   state = {
@@ -41,38 +47,44 @@ class Feedback extends Component {
 
   render() {
     const { assertions, score } = this.props;
+    const { avatar } = this.state;
     const THREE = 3;
     return (
-      <MainStyle data-testid="feedback-text">
+      <MainFeedback data-testid="feedback-text">
         <Header />
-        <div>
-          <span>
-            Você Acertou:
-            <strong data-testid="feedback-total-question">{ assertions }</strong>
-            perguntas
-          </span>
-          <span data-testid="feedback-text">
+        <LogoStyle className="logo-feedback" />
+        <AvatarStyle src={ avatar } alt="avatar" />
+        <ContainerBox>
+          <h2
+            data-testid="feedback-text"
+            className={ assertions >= THREE ? 'green' : 'red' }
+          >
             { assertions >= THREE ? 'Well Done!' : 'Could be better...' }
-          </span>
-          <p data-testid="feedback-total-score">{ score }</p>
-        </div>
-        <button
-          type="button"
-          onClick={ this.handleClick }
-          data-testid="btn-play-again"
-          name="play-again"
-        >
-          Play Again
-        </button>
-        <button
-          type="button"
-          onClick={ this.handleClick }
-          data-testid="btn-ranking"
-          name="ranking"
-        >
-          Ranking
-        </button>
-      </MainStyle>
+          </h2>
+          <strong data-testid="feedback-total-question">{ assertions }</strong>
+          <span data-testid="feedback-total-score">{ score }</span>
+        </ContainerBox>
+        <ContainerButton>
+          <ButtonStyle
+            className="btn-ranking"
+            type="button"
+            onClick={ this.handleClick }
+            data-testid="btn-ranking"
+            name="ranking"
+          >
+            Ranking
+          </ButtonStyle>
+          <ButtonStyle
+            type="button"
+            onClick={ this.handleClick }
+            data-testid="btn-play-again"
+            name="play-again"
+          >
+            Play Again
+          </ButtonStyle>
+        </ContainerButton>
+        <FooterFeedback />
+      </MainFeedback>
     );
   }
 }
