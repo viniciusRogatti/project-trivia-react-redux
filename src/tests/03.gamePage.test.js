@@ -50,8 +50,8 @@ describe('Testando a pagina Game', () => {
     renderWithRouterAndRedux(<App/>, INITIAL_STATE, '/playpage');
 
     const { results } = questionsResponse;
-    const correctAnswer =  results[0].correct_answer;
-    const btnAnswer = await screen.findByRole('button', { name: correctAnswer } )
+    const incorrectAnswer =  results[0].incorrect_answers;
+    const btnAnswer = await screen.findByRole('button', { name: incorrectAnswer[0] } )
 
     userEvent.click(btnAnswer)
     const btnNext = await screen.findByRole('button', { name: /next/i } )
@@ -98,25 +98,26 @@ describe('Testando a pagina Game', () => {
     expect(textQuestion).toHaveTextContent(results[1].question)
   });
 
-  // test('Verifica se ao acertar uma resposta o score é somado corretamente', async () => {
-  //   global.fetch = jest.fn().mockResolvedValue({
-  //     json: jest.fn().mockResolvedValue(questionsResponse),
-  //   });
-  //   const { store } = renderWithRouterAndRedux(<App/>, INITIAL_STATE, '/playpage');
+  test('Verifica se ao acertar uma resposta o score é somado corretamente', async () => {
+    global.fetch = jest.fn().mockResolvedValue({
+      json: jest.fn().mockResolvedValue(questionsResponse),
+    });
+    const { store } = renderWithRouterAndRedux(<App/>, INITIAL_STATE, '/playpage');
 
-  //   const categoryQuestion = await screen.findByTestId(QUESTION_CATEGORY_TEST_ID);
+    const categoryQuestion = await screen.findByTestId(QUESTION_CATEGORY_TEST_ID);
     
 
-  //   expect(categoryQuestion).toBeInTheDocument();
-  //   const btnAnswerCorrect = screen.getByTestId(CORRECT_ANSWER_TEST_ID)
+    expect(categoryQuestion).toBeInTheDocument();
+    const btnAnswerCorrect = screen.getByTestId(CORRECT_ANSWER_TEST_ID)
 
-  //   userEvent.click(btnAnswerCorrect);
-  //   expect(btnAnswerCorrect).toBeDisabled();
+    userEvent.click(btnAnswerCorrect);
+    console.log(btnAnswerCorrect.textContent);
+    expect(btnAnswerCorrect).toBeDisabled();
 
-  //   const textQuestion = await screen.findByTestId(QUESTION_TEXT_TEST_ID);
-  //   expect(textQuestion).toBeInTheDocument();
-  //   console.log(store.getState().player);
-  // })
+    const textQuestion = await screen.findByTestId(QUESTION_TEXT_TEST_ID);
+    expect(textQuestion).toBeInTheDocument();
+    console.log(store.getState().player);
+  })
 
   test('Verifica se ao chegar na ultima pergunta e clicar no botão "next" o usuário é redirecionado para a tela de feedback ', async () => {
     global.fetch = jest.fn().mockResolvedValue({
@@ -149,4 +150,17 @@ describe('Testando a pagina Game', () => {
     expect(inputName).toBeInTheDocument();
     expect(history.location.pathname).toBe('/');
   });
+
+  jest.setTimeout(33000)
+  test('', async () => {
+    global.fetch = jest.fn().mockResolvedValue({
+      json: jest.fn().mockResolvedValue(questionsResponse),
+    });
+    renderWithRouterAndRedux(<App/>, INITIAL_STATE, '/playpage');
+    const { results } = questionsResponse;
+    
+
+    await new Promise((interval) => setTimeout(interval, 32000));
+    expect(screen.getByTestId('correct-answer')).toBeDisabled()
+  })
 });

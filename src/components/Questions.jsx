@@ -72,6 +72,7 @@ class Questions extends Component {
   };
 
   sumScore = (answer) => {
+    console.log(answer);
     const { question: { correct_answer: correctAnswer, difficulty }, score } = this.props;
     const { timer } = this.state;
     if (answer === correctAnswer) {
@@ -79,22 +80,21 @@ class Questions extends Component {
       const hard = 3;
       switch (difficulty) {
       case 'easy':
+        console.log(answer);
         return score + dez + (timer * 1);
       case 'medium':
         return score + dez + (timer * 2);
-      case 'hard':
-        return score + dez + (timer * hard);
       default:
-        break;
+        return score + dez + (timer * hard);
       }
     } else return score;
   };
 
-  handleClick = ({ target: { innerText } }) => {
+  handleClick = ({ target: { name } }) => {
     const { dispatch } = this.props;
     const { answerCorrect } = this.state;
-    if (innerText === answerCorrect) dispatch(rightAnswer());
-    this.setState({ nextQuestion: true, score: this.sumScore(innerText) }, () => {
+    if (name === answerCorrect) dispatch(rightAnswer());
+    this.setState({ nextQuestion: true, score: this.sumScore(name) }, () => {
       const { score } = this.state;
       dispatch(scoreAction(score));
     });
@@ -146,6 +146,7 @@ class Questions extends Component {
               onClick={ this.handleClick }
               className={ nextQuestion && 'correctAnswer' }
               disabled={ nextQuestion }
+              name={ answer }
             >
               { answer }
             </ButtonAnswer>
@@ -157,6 +158,7 @@ class Questions extends Component {
               onClick={ this.handleClick }
               className={ nextQuestion && 'wrongAnswer' }
               disabled={ nextQuestion }
+              name={ answer }
             >
               { answer }
             </ButtonAnswer>
