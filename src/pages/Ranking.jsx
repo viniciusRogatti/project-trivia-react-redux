@@ -8,18 +8,16 @@ import image from '../styles/_imgs/Vector.svg';
 import ButtonRanking from '../styles/rankingStyle/bottomRanking';
 import LogoStyle from '../styles/LogoStyle';
 
+import { getRankingList } from '../services/storage';
+
 class Ranking extends Component {
   state = {
     storage: [],
   };
 
   componentDidMount() {
-    const storage = JSON.parse(localStorage.getItem('ranking'));
-    const lastScore = -1;
-    storage.sort((a, b) => (a.score < b.score ? 1 : lastScore));
-    this.setState({
-      storage,
-    });
+    const storage = getRankingList();
+    this.setState({ storage });
   }
 
   handleClick = () => {

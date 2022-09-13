@@ -10,6 +10,7 @@ import AvatarStyle from '../styles/feedbackStyles/Avatar';
 import ContainerBox from '../styles/feedbackStyles/ContainerBox';
 import ButtonStyle from '../styles/ButtonStyle';
 import ContainerButton from '../styles/feedbackStyles/ContainerButton';
+import { addRanking } from '../services/storage';
 
 class Feedback extends Component {
   state = {
@@ -20,28 +21,14 @@ class Feedback extends Component {
 
   componentDidMount() {
     const { avatar, name, score } = this.props;
-
-    this.setState({
-      name,
-      score,
-      avatar: `https://www.gravatar.com/avatar/${avatar}`,
-    });
+    const avatarImg = `https://www.gravatar.com/avatar/${avatar}`;
+    this.setState({ name, score, avatar: avatarImg });
   }
 
   handleClick = ({ target: { name } }) => {
-    const storage = JSON.parse(localStorage.getItem('ranking'));
-    let array = [];
-    if (storage === null) {
-      array.push(this.state);
-      localStorage.setItem('ranking', JSON.stringify(array));
-    } else {
-      array = JSON.parse(localStorage.getItem('ranking'));
-      array.push(this.state);
-      localStorage.setItem('ranking', JSON.stringify(array));
-    }
+    addRanking(this.state);
     const { history, dispatch } = this.props;
-    if (name === 'play-again') history.push('/');
-    if (name === 'ranking') history.push('/ranking');
+    history.push(name);
     dispatch(clearScore());
   };
 
@@ -70,7 +57,7 @@ class Feedback extends Component {
             type="button"
             onClick={ this.handleClick }
             data-testid="btn-ranking"
-            name="ranking"
+            name="/ranking"
           >
             Ranking
           </ButtonStyle>
@@ -78,7 +65,7 @@ class Feedback extends Component {
             type="button"
             onClick={ this.handleClick }
             data-testid="btn-play-again"
-            name="play-again"
+            name="/"
           >
             Play Again
           </ButtonStyle>
