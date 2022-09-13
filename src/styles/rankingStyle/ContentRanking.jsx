@@ -14,7 +14,9 @@ const ContentRanking = styled.main`
   .logo-ranking {
     width: 177.79px;
     height: 190px;
-    
+    position: absolute;
+    z-index: 1;
+    top: 14px;
   }
 
   h1 {
@@ -33,6 +35,16 @@ const ContentRanking = styled.main`
 
   ul {
     padding-left: 0;
+    max-height: 200px;
+    overflow-y: scroll;
+  }
+
+  ul::-webkit-scrollbar {
+    width: 0;
+  }
+
+  ul::-webkit-scrollbar-thumb {
+    width: 0;
   }
 
   li {
@@ -43,6 +55,8 @@ const ContentRanking = styled.main`
     left: 447px;
     top: 336px;
     margin-bottom: 13px;
+    margin-right: 10px;
+    margin-left: 10px;
     border-radius: 100px;
     background: #EBEBEB;
   }

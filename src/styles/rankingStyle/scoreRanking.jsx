@@ -13,23 +13,19 @@ const Span = styled.span`
   box-shadow: 0px 4px 22px 0px #00000040;
 
   p {
-  width: 101px;
-  height: 24px;
-  left: 702.42px;
-  top: 354px;
-
-  font-family: 'Epilogue';
-  font-style: normal;
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 150%;
-  /* identical to box height, or 24px */
-
-  display: flex;
-  align-items: center;
-  letter-spacing: 0.12em;
-
-  color: #000000;
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.12em;
+    width: 101px;
+    height: 24px;
+    left: 702.42px;
+    top: 354px;
+    font-family: 'Epilogue';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 150%;
+    color: #000000;
   }
 `;
 
