@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import ContentRanking from '../styles/rankingStyle/ContentRanking';
+import MainRanking from '../styles/rankingStyle/mainRanking';
+import Span from '../styles/rankingStyle/scoreRanking';
+import image from '../styles/_imgs/Vector.svg';
+import ButtonRanking from '../styles/rankingStyle/bottomRanking';
+import LogoStyle from '../styles/LogoStyle';
 
 class Ranking extends Component {
   state = {
@@ -24,27 +30,40 @@ class Ranking extends Component {
   render() {
     const { storage } = this.state;
     return (
-      <div>
-        <h1 data-testid="ranking-title">Ranking</h1>
-        <ul>
-          {
-            storage.map((player, index) => (
-              <li key={ `id-${player.name}` }>
-                <img src={ player.avatar } alt="avatar" />
-                <span data-testid={ `player-name-${index}` }>{player.name}</span>
-                <span data-testid={ `player-score-${index}` }>{player.score}</span>
-              </li>
-            ))
-          }
-        </ul>
-        <button
-          type="button"
-          data-testid="btn-go-home"
-          onClick={ this.handleClick }
-        >
-          Home
-        </button>
-      </div>
+      <MainRanking>
+        <ContentRanking>
+          <LogoStyle className="logo-ranking" />
+          <h1 data-testid="ranking-title">Ranking</h1>
+          <ul>
+            {
+              storage.map((player, index) => (
+                <li key={ `id-${player.name}` }>
+                  <div>
+                    <img src={ player.avatar } alt="avatar" />
+                    <span data-testid={ `player-name-${index}` }>{player.name}</span>
+                  </div>
+                  <Span
+                    data-testid={ `player-score-${index}` }
+                  >
+                    <img src={ `${image}` } alt="" />
+                    <p>
+                      <strong>{player.score}</strong>
+                      pontos
+                    </p>
+                  </Span>
+                </li>
+              ))
+            }
+          </ul>
+          <ButtonRanking
+            type="button"
+            data-testid="btn-go-home"
+            onClick={ this.handleClick }
+          >
+            Home
+          </ButtonRanking>
+        </ContentRanking>
+      </MainRanking>
     );
   }
 }
