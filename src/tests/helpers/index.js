@@ -20,6 +20,9 @@ export const QUESTION_TEXT_TEST_ID = "question-text";
 export const ANSWER_OPTIONS_TEST_ID = "answer-options"
 export const CORRECT_ANSWER_TEST_ID = "correct-answer";
 
+// Ranking tests ids
+export const RANKING_BTN_HOME = "btn-go-home";
+
 // URLS
 const INVALID_FETCH_TRIVIA_URL = 'https://opentdb.com/api.php?amount=5&token=INVALID_TOKEN';
 
