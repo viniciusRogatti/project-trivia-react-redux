@@ -1,3 +1,13 @@
+export const INITIAL_STATE = {
+  player: {
+    name: 'maria',
+    assertions: 0,
+    score: 0,
+    gravatarEmail: '',
+    email: '',
+  }
+}
+
 export const FIRST_STATE = {
   player: {
     name: 'maria',
