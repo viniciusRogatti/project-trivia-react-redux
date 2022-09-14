@@ -20,11 +20,8 @@ const ContentRanking = styled.div`
   }
 
   h1 {
-    position: absolute;
     width: 352px;
     height: 45px;
-    left: 464px;
-    top: 220px;
     font-family: 'Epilogue';
     font-size: 30px;
     text-align: center;
