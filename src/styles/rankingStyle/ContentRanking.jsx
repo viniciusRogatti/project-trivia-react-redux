@@ -33,6 +33,7 @@ const ContentRanking = styled.div`
   ul {
     padding-left: 0;
     max-height: 200px;
+    min-height: 200px;
     overflow-y: scroll;
   }
 

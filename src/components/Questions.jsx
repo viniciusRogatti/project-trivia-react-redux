@@ -22,6 +22,7 @@ class Questions extends Component {
     category: '',
     questionText: '',
     timer: 30,
+    buttonClicked: false,
   };
 
   componentDidMount() {
@@ -29,9 +30,11 @@ class Questions extends Component {
     this.timeToAnswer();
   }
 
-  componentDidUpdate(prevProps) {
-    if (prevProps !== this.props) {
+  componentDidUpdate() { // alterei isso
+    const { buttonClicked } = this.state;
+    if (buttonClicked) {
       this.getListQuestions();
+      this.setState({ buttonClicked: false });
     }
   }
 
@@ -109,7 +112,7 @@ class Questions extends Component {
   nextBtnClick = () => {
     const { handleNext } = this.props;
     handleNext();
-    this.setState({ nextQuestion: false, timer: 30 });
+    this.setState({ nextQuestion: false, timer: 30, buttonClicked: true });
     this.getListQuestions();
     this.timeToAnswer();
   };
