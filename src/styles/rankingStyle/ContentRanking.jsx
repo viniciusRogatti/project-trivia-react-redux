@@ -20,11 +20,8 @@ const ContentRanking = styled.div`
   }
 
   h1 {
-    position: absolute;
     width: 352px;
     height: 45px;
-    left: 464px;
-    top: 220px;
     font-family: 'Epilogue';
     font-size: 30px;
     text-align: center;
@@ -36,6 +33,7 @@ const ContentRanking = styled.div`
   ul {
     padding-left: 0;
     max-height: 200px;
+    min-height: 200px;
     overflow-y: scroll;
   }
 
