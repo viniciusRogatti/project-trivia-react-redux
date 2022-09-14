@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Header from '../components/Header';
 import fetchTrivia from '../services/fetchTrivia';
-import { getToken } from '../services/storage';
 import Questions from '../components/Questions';
 import MainGame from '../styles/gameStyles/MainGame';
 import FooterGame from '../styles/gameStyles/FooterGame';
@@ -15,7 +14,8 @@ class Game extends Component {
   };
 
   async componentDidMount() {
-    const data = await fetchTrivia(getToken());
+    const { url } = this.props;
+    const data = await fetchTrivia(url);
     const invalidToken = 3;
     const validationToken = data.response_code === invalidToken;
     if (validationToken) {
@@ -39,9 +39,10 @@ class Game extends Component {
 
   render() {
     const { questions, indexQuestion } = this.state;
+    const { history } = this.props;
     return (
       <MainGame>
-        <Header />
+        <Header history={ history } />
         { questions.length > 0 && (
           <Questions
             handleNext={ this.handleNext }
@@ -54,15 +55,14 @@ class Game extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  name: state.player.name,
-  score: state.player.score,
-  email: state.player.email,
+  url: state.fetch.url,
 });
 
 Game.propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
   }).isRequired,
+  url: PropTypes.string.isRequired,
 };
 
 export default connect(mapStateToProps)(Game);

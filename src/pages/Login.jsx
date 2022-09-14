@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { FiSettings } from 'react-icons/fi';
 import PropTypes from 'prop-types';
 import fetchApi from '../services/fetchApi';
 import { saveToken } from '../services/storage';
-import { playerAction } from '../redux/actions/index';
+import { playerAction, tokenAction } from '../redux/actions/index';
 import LogoStyle from '../styles/LogoStyle';
 import MainStyle from '../styles/MainStyle';
 import { BoxLoginStyle, BgStyle } from '../styles/loginStyles/LoginSyles';
 import ButtonStyle from '../styles/ButtonStyle';
-import ButtonSettings from '../styles/loginStyles/ButtonSetting';
 import IconTrybe from '../styles/IconTrybe';
 
 class Login extends Component {
@@ -28,16 +26,14 @@ class Login extends Component {
   };
 
   handleClick = async () => {
-    const { history, dispatch } = this.props;
+    const { history, dispatch, filter } = this.props;
     const token = await fetchApi();
     saveToken(token);
+    if (!filter) {
+      dispatch(tokenAction(token));
+    }
     dispatch(playerAction(this.state));
     history.push('/playpage');
-  };
-
-  goToSettings = () => {
-    const { history } = this.props;
-    history.push('/settings');
   };
 
   render() {
@@ -73,14 +69,6 @@ class Login extends Component {
           >
             Play
           </ButtonStyle>
-          <ButtonSettings
-            type="button"
-            data-testid="btn-settings"
-            onClick={ this.goToSettings }
-          >
-            <FiSettings />
-          </ButtonSettings>
-
         </BoxLoginStyle>
         <IconTrybe />
       </MainStyle>
@@ -93,6 +81,11 @@ Login.propTypes = {
     push: PropTypes.func.isRequired,
   }).isRequired,
   dispatch: PropTypes.func.isRequired,
+  filter: PropTypes.bool.isRequired,
 };
 
-export default connect()(Login);
+const mapStateToProps = (state) => ({
+  filter: state.fetch.filter,
+});
+
+export default connect(mapStateToProps)(Login);

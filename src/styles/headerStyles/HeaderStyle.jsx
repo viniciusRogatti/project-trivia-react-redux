@@ -44,6 +44,10 @@ const HeaderStyle = styled.header`
     color: #F9BA18;
     margin-right: 10px;
   }
+
+  button {
+    background: transparent;
+  }
 `;
 
 export default HeaderStyle;

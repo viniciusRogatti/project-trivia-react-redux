@@ -26,7 +26,6 @@ const ContentRanking = styled.div`
     left: 464px;
     top: 220px;
     font-family: 'Epilogue';
-    font-style: normal;
     font-size: 30px;
     text-align: center;
     letter-spacing: 0.12em;

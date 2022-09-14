@@ -33,12 +33,12 @@ class Feedback extends Component {
   };
 
   render() {
-    const { assertions, score } = this.props;
+    const { assertions, score, history } = this.props;
     const { avatar } = this.state;
     const THREE = 3;
     return (
       <MainFeedback data-testid="feedback-text">
-        <Header />
+        <Header history={ history } />
         <LogoStyle className="logo-feedback" />
         <AvatarStyle src={ avatar } alt="avatar" />
         <ContainerBox>

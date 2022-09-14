@@ -35,6 +35,11 @@ class Questions extends Component {
     }
   }
 
+  componentWillUnmount() {
+    const { intervalTime } = this.state;
+    clearInterval(intervalTime);
+  }
+
   timeToAnswer = () => {
     const oneSecond = 1000;
     const { dispatch, score } = this.props;
@@ -44,6 +49,7 @@ class Questions extends Component {
       if (timer === timeLimit) {
         this.setState({ nextQuestion: true });
         dispatch(scoreAction(score));
+        clearInterval(intervalTime);
       } else {
         this.setState((prevState) => ({ timer: prevState.timer - 1 }));
       }
@@ -72,7 +78,6 @@ class Questions extends Component {
   };
 
   sumScore = (answer) => {
-    console.log(answer);
     const { question: { correct_answer: correctAnswer, difficulty }, score } = this.props;
     const { timer } = this.state;
     if (answer === correctAnswer) {
@@ -80,7 +85,6 @@ class Questions extends Component {
       const hard = 3;
       switch (difficulty) {
       case 'easy':
-        console.log(answer);
         return score + dez + (timer * 1);
       case 'medium':
         return score + dez + (timer * 2);
