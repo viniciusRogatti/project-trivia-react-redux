@@ -19,6 +19,11 @@ class Header extends Component {
     dispatch(gravatarAction(hashEmail));
   }
 
+  handleClick = () => {
+    const { history } = this.props;
+    history.push('/settings');
+  };
+
   render() {
     const { name, score } = this.props;
     const { hashEmail } = this.state;
@@ -35,13 +40,19 @@ class Header extends Component {
           Pontos:
           <strong data-testid="header-score">{score}</strong>
         </span>
-        <FiSettings />
+        <button type="button" onClick={ this.handleClick }>
+          <FiSettings />
+        </button>
+
       </HeaderStyle>
     );
   }
 }
 
 Header.propTypes = {
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }).isRequired,
   dispatch: PropTypes.func.isRequired,
   email: PropTypes.string.isRequired,
   score: PropTypes.number.isRequired,

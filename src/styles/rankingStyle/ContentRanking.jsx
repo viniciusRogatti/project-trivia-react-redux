@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const ContentRanking = styled.main`
+const ContentRanking = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -20,12 +20,12 @@ const ContentRanking = styled.main`
   }
 
   h1 {
+    position: absolute;
     width: 352px;
     height: 45px;
     left: 464px;
-    top: 272px;
+    top: 220px;
     font-family: 'Epilogue';
-    font-style: normal;
     font-size: 30px;
     text-align: center;
     letter-spacing: 0.12em;

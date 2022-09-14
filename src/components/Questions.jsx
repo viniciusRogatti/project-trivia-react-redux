@@ -35,6 +35,11 @@ class Questions extends Component {
     }
   }
 
+  componentWillUnmount() {
+    const { intervalTime } = this.state;
+    clearInterval(intervalTime);
+  }
+
   timeToAnswer = () => {
     const oneSecond = 1000;
     const { dispatch, score } = this.props;
@@ -44,6 +49,7 @@ class Questions extends Component {
       if (timer === timeLimit) {
         this.setState({ nextQuestion: true });
         dispatch(scoreAction(score));
+        clearInterval(intervalTime);
       } else {
         this.setState((prevState) => ({ timer: prevState.timer - 1 }));
       }
@@ -82,19 +88,17 @@ class Questions extends Component {
         return score + dez + (timer * 1);
       case 'medium':
         return score + dez + (timer * 2);
-      case 'hard':
-        return score + dez + (timer * hard);
       default:
-        break;
+        return score + dez + (timer * hard);
       }
     } else return score;
   };
 
-  handleClick = ({ target: { innerText } }) => {
+  handleClick = ({ target: { name } }) => {
     const { dispatch } = this.props;
     const { answerCorrect } = this.state;
-    if (innerText === answerCorrect) dispatch(rightAnswer());
-    this.setState({ nextQuestion: true, score: this.sumScore(innerText) }, () => {
+    if (name === answerCorrect) dispatch(rightAnswer());
+    this.setState({ nextQuestion: true, score: this.sumScore(name) }, () => {
       const { score } = this.state;
       dispatch(scoreAction(score));
     });
@@ -146,6 +150,7 @@ class Questions extends Component {
               onClick={ this.handleClick }
               className={ nextQuestion && 'correctAnswer' }
               disabled={ nextQuestion }
+              name={ answer }
             >
               { answer }
             </ButtonAnswer>
@@ -157,6 +162,7 @@ class Questions extends Component {
               onClick={ this.handleClick }
               className={ nextQuestion && 'wrongAnswer' }
               disabled={ nextQuestion }
+              name={ answer }
             >
               { answer }
             </ButtonAnswer>
