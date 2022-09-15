@@ -3,6 +3,11 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { urlAction } from '../redux/actions';
 import fetchCategories from '../services/fetchCategories';
+import MainSettings from '../styles/settingsStyles/MainSettings';
+import BodySettings from '../styles/settingsStyles/BodySettings';
+import LogoStyle from '../styles/LogoStyle';
+import SelectSettings from '../styles/settingsStyles/SelectSettings';
+import ButtonStyle from '../styles/ButtonStyle';
 
 class Settings extends Component {
   state = {
@@ -44,46 +49,62 @@ class Settings extends Component {
   render() {
     const { categories } = this.state;
     return (
-      <div data-testid="settings-title">
-        <select name="categories" onChange={ this.onChange }>
-          <option>
-            Category
-          </option>
-          {categories?.map(({ name, id }) => (
-            <option name={ id } key={ `category-id-${id}` }>
-              {name}
+      <BodySettings>
+        <LogoStyle className="logo-Settings" />
+        <MainSettings data-testid="settings-title">
+          <h1>configurações</h1>
+          <SelectSettings
+            className="select-settings"
+            name="categories"
+            onChange={ this.onChange }
+          >
+            <option>
+              Category
             </option>
-          ))}
-        </select>
-        <select name="difficulty" onChange={ this.onChange }>
-          <option>
-            Difficulty
-          </option>
-          <option>
-            Easy
-          </option>
-          <option>
-            Medium
-          </option>
-          <option>
-            Hard
-          </option>
-        </select>
-        <select name="type" onChange={ this.onChange }>
-          <option>
-            Type
-          </option>
-          <option>
-            Multiple Choise
-          </option>
-          <option>
-            True/False
-          </option>
-        </select>
-        <button type="button" onClick={ this.handleClick }>
-          Play
-        </button>
-      </div>
+            {categories?.map(({ name, id }) => (
+              <option name={ id } key={ `category-id-${id}` }>
+                {name}
+              </option>
+            ))}
+          </SelectSettings>
+          <SelectSettings
+            className="select-settings"
+            name="difficulty"
+            onChange={ this.onChange }
+          >
+            <option>
+              Difficulty
+            </option>
+            <option>
+              Easy
+            </option>
+            <option>
+              Medium
+            </option>
+            <option>
+              Hard
+            </option>
+          </SelectSettings>
+          <SelectSettings
+            className="select-settings"
+            name="type"
+            onChange={ this.onChange }
+          >
+            <option>
+              Type
+            </option>
+            <option>
+              Multiple Choise
+            </option>
+            <option>
+              True/False
+            </option>
+          </SelectSettings>
+          <ButtonStyle type="button" onClick={ this.handleClick }>
+            Play
+          </ButtonStyle>
+        </MainSettings>
+      </BodySettings>
     );
   }
 }
