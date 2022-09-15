@@ -56,6 +56,15 @@ p, h1, h2, h3, h4, h5, h6 {
 #root, #__next {
   isolation: isolate;
 }
+
+.select-settings:hover {
+  outline: none;
+  border: 1px solid #737373;
+}
+
+.select-settings:focus {
+  outline: none;
+}
 `;
 
 export default GlobalStyles;
