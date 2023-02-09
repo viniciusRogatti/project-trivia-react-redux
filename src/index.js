@@ -7,7 +7,7 @@ import store from './redux/store';
 import GlobalStyles from './styles/globalStyle';
 
 ReactDOM.render(
-  <BrowserRouter>
+  <BrowserRouter basename="/project-trivia-react-redux">
     <Provider store={ store }>
       <GlobalStyles />
       <App />
