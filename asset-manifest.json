@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/project-trivia-react-redux/static/css/main.5a8b755c.css",
-    "main.js": "/project-trivia-react-redux/static/js/main.f8df7ade.js",
+    "main.js": "/project-trivia-react-redux/static/js/main.f519cd4a.js",
     "static/media/background-ranking-page.png": "/project-trivia-react-redux/static/media/background-ranking-page.62f77f2498a7ea5cf211.png",
     "static/media/background.png": "/project-trivia-react-redux/static/media/background.b6e2ce5a5bf949835f65.png",
     "static/media/backgroundFeedback.png": "/project-trivia-react-redux/static/media/backgroundFeedback.be3c24a14447ec8988fb.png",
@@ -14,10 +14,10 @@
     "static/media/optionA.svg": "/project-trivia-react-redux/static/media/optionA.3435deca6bb53a6ed85dd25c76daf695.svg",
     "static/media/Polygon-4.svg": "/project-trivia-react-redux/static/media/Polygon-4.56bce911b828c78cacd195d0d69369b0.svg",
     "main.5a8b755c.css.map": "/project-trivia-react-redux/static/css/main.5a8b755c.css.map",
-    "main.f8df7ade.js.map": "/project-trivia-react-redux/static/js/main.f8df7ade.js.map"
+    "main.f519cd4a.js.map": "/project-trivia-react-redux/static/js/main.f519cd4a.js.map"
   },
   "entrypoints": [
     "static/css/main.5a8b755c.css",
-    "static/js/main.f8df7ade.js"
+    "static/js/main.f519cd4a.js"
   ]
 }
