@@ -2,6 +2,8 @@ import styled from 'styled-components';
 
 const BoxQuestion = styled.div`
   display: flex;
+  position: relative;
+  bottom: -80px;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;

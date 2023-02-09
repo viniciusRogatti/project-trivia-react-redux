@@ -16,7 +16,7 @@ const MainSettings = styled.main`
   h1 {
   width: 352px;
   height: 45px;
-  margin-top: 143px;
+  margin: 130px 0 40px 0;
 
   font-family: 'Epilogue';
   font-style: normal;

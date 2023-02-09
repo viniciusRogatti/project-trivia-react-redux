@@ -2,6 +2,9 @@ import styled from 'styled-components';
 
 const ButtonAnswer = styled.button`
   width: 515px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   height: 64px;
   left: 661px;
   top: 361px;
@@ -22,6 +25,11 @@ const ButtonAnswer = styled.button`
   :disabled&.wrongAnswer {
     background-color: red;
     opacity: 0.5;
+  }
+
+  svg {
+    width: 46px;
+    height: 46px;
   }
 `;
 

@@ -6,8 +6,16 @@ const ContainerQuestion = styled.div`
   align-items: center;
   justify-content: end;
   z-index: 2;
+
   .logoTrivia {
-    top: 5px;
+    top: -200px;
+    position: absolute;
+  }
+  .icon-footer-game {
+    bottom: -150px;
+    position: absolute;
+    width: 37px;
+    height: 42px;
   }
 `;
 

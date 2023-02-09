@@ -6,16 +6,23 @@ import Game from './pages/Game';
 import Login from './pages/Login';
 import Ranking from './pages/Ranking';
 import Settings from './pages/Settings';
+import {
+  PATH_FEEDBACK_PAGE,
+  PATH_LOGIN_PAGE,
+  PATH_PLAY_PAGE,
+  PATH_RANKING_PAGE,
+  PATH_SETTINGS_PAGE,
+} from './services/helpers/constantes';
 
 export default function App() {
   return (
-    <div className="App">
+    <div>
       <Switch>
-        <Route exact path="/" component={ Login } />
-        <Route exact path="/playpage" component={ Game } />
-        <Route exact path="/settings" component={ Settings } />
-        <Route exact path="/feedback" component={ Feedback } />
-        <Route exact path="/ranking" component={ Ranking } />
+        <Route exact path={ PATH_LOGIN_PAGE } component={ Login } />
+        <Route exact path={ PATH_PLAY_PAGE } component={ Game } />
+        <Route exact path={ PATH_SETTINGS_PAGE } component={ Settings } />
+        <Route exact path={ PATH_FEEDBACK_PAGE } component={ Feedback } />
+        <Route exact path={ PATH_RANKING_PAGE } component={ Ranking } />
       </Switch>
     </div>
   );

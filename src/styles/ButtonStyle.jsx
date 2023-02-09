@@ -16,6 +16,11 @@ const ButtonStyle = styled.button`
   cursor: pointer;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   padding: 12px 16px;
+
+  :disabled {
+    opacity: 0.2;
+  }
+
 `;
 
 export default ButtonStyle;

@@ -19,10 +19,17 @@ export const BoxLoginStyle = styled.div`
     width: 100%;
     padding: 12px 16px;
     font-family: "Verdana";
-    font-style: normal;
     font-weight: 500;
-    font-size: 15px;
-    line-height: 150%;
+    font-size: 16px;
+    color: #6B7588;
+    border: 1px solid #E1E5EB;
+
+    :focus {
+      outline: 1px solid #2FC18C;
+      font-size: 18px;
+      background-color: rgb(230, 231, 231);
+      color: #121212;
+    }
   }
 `;
 export const BgStyle = styled.div`

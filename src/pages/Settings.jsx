@@ -52,7 +52,7 @@ class Settings extends Component {
       <BodySettings>
         <LogoStyle className="logo-Settings" />
         <MainSettings data-testid="settings-title">
-          <h1>configurações</h1>
+          <h1>Settings</h1>
           <SelectSettings
             className="select-settings"
             name="categories"

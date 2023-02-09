@@ -6,6 +6,7 @@ import { FaStar } from 'react-icons/fa';
 import { connect } from 'react-redux';
 import { gravatarAction } from '../redux/actions';
 import HeaderStyle from '../styles/headerStyles/HeaderStyle';
+import { PATH_SETTINGS_PAGE } from '../services/helpers/constantes';
 
 class Header extends Component {
   state = {
@@ -21,7 +22,7 @@ class Header extends Component {
 
   handleClick = () => {
     const { history } = this.props;
-    history.push('/settings');
+    history.push(PATH_SETTINGS_PAGE);
   };
 
   render() {

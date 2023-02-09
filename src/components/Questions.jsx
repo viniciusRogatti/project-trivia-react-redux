@@ -14,6 +14,17 @@ import IconTrybe from '../styles/IconTrybe';
 import ButtonStyle from '../styles/ButtonStyle';
 import TimerComtent from '../styles/TimerStyle';
 import { rightAnswer, scoreAction } from '../redux/actions';
+import {
+  difficultyEasy,
+  difficultyMedium,
+  multipleChoiceOptions,
+  oneSecond,
+  pointsEasy,
+  pointsHard,
+  pointsMedium,
+  pointsPerHit,
+  timeLimit,
+} from '../services/helpers/constantes';
 
 class Questions extends Component {
   state = {
@@ -30,7 +41,7 @@ class Questions extends Component {
     this.timeToAnswer();
   }
 
-  componentDidUpdate() { // alterei isso
+  componentDidUpdate() {
     const { buttonClicked } = this.state;
     if (buttonClicked) {
       this.getListQuestions();
@@ -44,11 +55,9 @@ class Questions extends Component {
   }
 
   timeToAnswer = () => {
-    const oneSecond = 1000;
     const { dispatch, score } = this.props;
     const intervalTime = setInterval(() => {
       const { timer } = this.state;
-      const timeLimit = 0;
       if (timer === timeLimit) {
         this.setState({ nextQuestion: true });
         dispatch(scoreAction(score));
@@ -84,15 +93,13 @@ class Questions extends Component {
     const { question: { correct_answer: correctAnswer, difficulty }, score } = this.props;
     const { timer } = this.state;
     if (answer === correctAnswer) {
-      const dez = 10;
-      const hard = 3;
       switch (difficulty) {
-      case 'easy':
-        return score + dez + (timer * 1);
-      case 'medium':
-        return score + dez + (timer * 2);
+      case difficultyEasy:
+        return score + pointsPerHit + (timer * pointsEasy);
+      case difficultyMedium:
+        return score + pointsPerHit + (timer * pointsMedium);
       default:
-        return score + dez + (timer * hard);
+        return score + pointsPerHit + (timer * pointsHard);
       }
     } else return score;
   };
@@ -142,7 +149,7 @@ class Questions extends Component {
               </p>
             </TimerComtent>
           </BoxQuestion>
-          <IconTrybe />
+          <IconTrybe className="icon-footer-game" />
         </ContainerQuestion>
         <ContainerAnswer data-testid="answer-options">
           { answerArray?.map((answer, index) => (answer === answerCorrect ? (
@@ -155,6 +162,9 @@ class Questions extends Component {
               disabled={ nextQuestion }
               name={ answer }
             >
+              <svg>
+                {multipleChoiceOptions[index]}
+              </svg>
               { answer }
             </ButtonAnswer>
           ) : (
@@ -167,11 +177,15 @@ class Questions extends Component {
               disabled={ nextQuestion }
               name={ answer }
             >
+              <svg>
+                {multipleChoiceOptions[index]}
+              </svg>
               { answer }
             </ButtonAnswer>
           )))}
           { nextQuestion && (
             <ButtonStyle
+              className="btn-next"
               data-testid="btn-next"
               onClick={ this.nextBtnClick }
             >

@@ -16,12 +16,12 @@ const ContentRanking = styled.div`
     height: 190px;
     position: absolute;
     z-index: 1;
-    top: 14px;
+    top: 40px;
   }
 
   h1 {
-    width: 352px;
-    height: 45px;
+    position: relative;
+    top: -20px;
     font-family: 'Epilogue';
     font-size: 30px;
     text-align: center;
@@ -50,8 +50,6 @@ const ContentRanking = styled.div`
     justify-content: space-between;
     height: 55px;
     min-width: 386px;
-    left: 447px;
-    top: 336px;
     margin-bottom: 13px;
     margin-right: 10px;
     margin-left: 10px;
@@ -73,6 +71,10 @@ const ContentRanking = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+
+  button {
+    margin-top: 10px;
   }
 `;
 
