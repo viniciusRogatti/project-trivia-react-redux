@@ -1,5 +1,6 @@
 {
   "name": "trivia-react-redux",
+  "homepage": "https://viniciusrogatti.github.io/project-trivia-react-redux",
   "version": "0.1.0",
   "private": true,
   "engines": {
@@ -24,6 +25,8 @@
   "scripts": {
     "cy": "env CY_CLI=true cypress run",
     "cy:open": "cypress open --e2e --browser chrome",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "env ESLINT_NO_DEV_ERRORS=true react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
