@@ -1,0 +1,1 @@
+{"version":3,"file":"static/css/main.5a8b755c.css","mappings":"AAAA,eACE,wBACF,CAEA,aACE,oBACF","sources":["App.css"],"sourcesContent":[".correctAnswer {\n  border: 3px solid rgb(6, 240, 15);\n}\n\n.wrongAnswer {\n  border: 3px solid red;\n}\n\n"],"names":[],"sourceRoot":""}

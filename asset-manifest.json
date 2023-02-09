@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/project-trivia-react-redux/static/css/main.5a8b755c.css",
+    "main.js": "/project-trivia-react-redux/static/js/main.f8df7ade.js",
+    "static/media/background-ranking-page.png": "/project-trivia-react-redux/static/media/background-ranking-page.62f77f2498a7ea5cf211.png",
+    "static/media/background.png": "/project-trivia-react-redux/static/media/background.b6e2ce5a5bf949835f65.png",
+    "static/media/backgroundFeedback.png": "/project-trivia-react-redux/static/media/backgroundFeedback.be3c24a14447ec8988fb.png",
+    "static/media/logo-trivia.png": "/project-trivia-react-redux/static/media/logo-trivia.3b5177bdd6ca63d7e3d0.png",
+    "static/media/optionC.svg": "/project-trivia-react-redux/static/media/optionC.1625d1a3f4a57a1674d1cfccad415743.svg",
+    "static/media/optionB.svg": "/project-trivia-react-redux/static/media/optionB.93a18a5a54ca9237ecf97a4f18027773.svg",
+    "static/media/optionD.svg": "/project-trivia-react-redux/static/media/optionD.3227d99deb6f384a2c6d0594374192dc.svg",
+    "index.html": "/project-trivia-react-redux/index.html",
+    "static/media/Vector.svg": "/project-trivia-react-redux/static/media/Vector.44cdb9173b088979959fc1a09cb4f2d7.svg",
+    "static/media/optionA.svg": "/project-trivia-react-redux/static/media/optionA.3435deca6bb53a6ed85dd25c76daf695.svg",
+    "static/media/Polygon-4.svg": "/project-trivia-react-redux/static/media/Polygon-4.56bce911b828c78cacd195d0d69369b0.svg",
+    "main.5a8b755c.css.map": "/project-trivia-react-redux/static/css/main.5a8b755c.css.map",
+    "main.f8df7ade.js.map": "/project-trivia-react-redux/static/js/main.f8df7ade.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.5a8b755c.css",
+    "static/js/main.f8df7ade.js"
+  ]
+}
